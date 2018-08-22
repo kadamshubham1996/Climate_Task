@@ -58,6 +58,11 @@ def create_register(request_data):
                         Ann=i
                 else:
                     continue
-            register_object=Climate.objects.create(Region=Region,Climate_type=Climate_type,Year=Year,Jan=Jan,Feb=Feb,Mar=Mar,Apr=Apr,May=May,Jun=Jun,Jul=Jul,Aug=Aug,Sep=Sep,Oct=Oct,Nov=Nov,Dec=Dec,Win=Win,Spr=Spr,Sum=Sum,Aut=Aut,Ann=Ann)
-    return register_object
+            ptint Ann
+            obj=Climate.objects.filter(Region=Region,Climate_type=Climate_type,Year=Year)
+            if obj:
+                continue
+            else:
+                Climate.objects.create(Region=Region,Climate_type=Climate_type,Year=Year,Jan=Jan,Feb=Feb,Mar=Mar,Apr=Apr,May=May,Jun=Jun,Jul=Jul,Aug=Aug,Sep=Sep,Oct=Oct,Nov=Nov,Dec=Dec,Win=Win,Spr=Spr,Sum=Sum,Aut=Aut,Ann=Ann)
+    return True
 
