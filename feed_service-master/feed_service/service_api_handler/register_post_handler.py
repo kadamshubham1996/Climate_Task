@@ -16,53 +16,14 @@ def create_register(request_data):
         count = count + 1
         if count >= 9:
             count1 = 0
-            Year="";Jan="";Feb="";Mar="";Apr="";May="";Jun="";Jul="";Aug="";Sep="";Oct="";Nov="";Dec="";Win="";Spr="";Sum="";Aut="";Ann="";
+            climate_list=[]
             for i in value.split(' '):
                 if i:
                     count1 = count1 + 1
-                    if count1 == 1:
-                        Year=i
-                    if count1 == 2:
-                        Jan=i
-                    if count1 == 3:
-                        Feb=i
-                    if count1 == 4:
-                        Mar=i
-                    if count1 == 5:
-                        Apr=i
-                    if count1 == 6:
-                        May=i
-                    if count1 == 7:
-                        Jun=i
-                    if count1 == 8:
-                        Jul=i
-                    if count1 == 9:
-                        Aug=i
-                    if count1 == 10:
-                        Sep=i
-                    if count1 == 11:
-                        Oct=i
-                    if count1 == 12:
-                        Nov=i
-                    if count1 == 13:
-                        Dec=i
-                    if count1 == 14:
-                        Win=i
-                    if count1 == 15:
-                        Spr=i
-                    if count1 == 16:
-                        Sum=i
-                    if count1 == 17:
-                        Aut=i
-                    if count1 == 18:
-                        Ann=i
+                    climate_list.append(i)
                 else:
                     continue
-            ptint Ann
-            obj=Climate.objects.filter(Region=Region,Climate_type=Climate_type,Year=Year)
-            if obj:
-                continue
-            else:
-                Climate.objects.create(Region=Region,Climate_type=Climate_type,Year=Year,Jan=Jan,Feb=Feb,Mar=Mar,Apr=Apr,May=May,Jun=Jun,Jul=Jul,Aug=Aug,Sep=Sep,Oct=Oct,Nov=Nov,Dec=Dec,Win=Win,Spr=Spr,Sum=Sum,Aut=Aut,Ann=Ann)
+            if len(climate_list)==18:
+                Climate.objects.get_or_create(Region=Region,Climate_type=Climate_type,Year=climate_list[0],Jan=climate_list[1],Feb=climate_list[2],Mar=climate_list[3],Apr=climate_list[4],May=climate_list[5],Jun=climate_list[6],Jul=climate_list[7],Aug=climate_list[8],Sep=climate_list[9],Oct=climate_list[10],Nov=climate_list[11],Dec=climate_list[12],Win=climate_list[13],Spr=climate_list[14],Sum=climate_list[15],Aut=climate_list[16],Ann=climate_list[17])
     return True
 
