@@ -1,9 +1,14 @@
 from feed_service.db.climate_models.models import Climate
 import requests
+
+from feed_service.service_api_handler.Climate_type import climate_generator
+
+
 def create_register(request_data):
     Region = request_data['Region']
     Climate_type = request_data['Climate_type']
-    link = request_data['link']
+    climate_object=climate_generator(Climate_type)
+    link ="https://www.metoffice.gov.uk/pub/data/weather/uk/climate/datasets/"+climate_object+"/date/"+Region+".txt"
     f = requests.get(link)
     data = f.text
     count = 0
